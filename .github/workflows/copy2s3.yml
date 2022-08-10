@@ -34,7 +34,11 @@ jobs:
 
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync . s3://mohi-awsbackup-bucket/github
+        pwd
+        var=$(pwd)
+        basename $(pwd)
+        mydir="$(basename $PWD)"
+        aws s3 sync . s3://mohi-awsbackup-bucket/github/$mydir
 
     - name: Configure AWS credentials from Production account
       uses: aws-actions/configure-aws-credentials@v1
